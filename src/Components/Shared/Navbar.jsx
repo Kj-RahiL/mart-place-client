@@ -1,30 +1,28 @@
 import { Link, NavLink } from "react-router-dom";
-// import logo from '../../assets/logo.png'
-// import { useContext } from "react";
-// import { AuthContext } from "../../Providers/AuthProvider";
-// import { toast } from "react-toastify";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useContext } from "react";
+import { toast } from "react-toastify";
+
 
 
 const Navbar = () => {
-    // const {user, logOut} = useContext(AuthContext)
-    // // console.log('navbar photo' ,user?.photoURL,user?.displayName )
-    // const handleSignOut = () => {
-    //     logOut()
-    //         .then(() => {
-    //             console.log('sign out successfully')
-    //            toast.success('Sign Out successfully!')
-    //         })
-    //         .catch(error => {
-    //             console.error(error.message)
-    //         })
-    // }
+    const {user, logOut} = useContext(AuthContext)
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                console.log('sign out successfully')
+               toast.success('Sign Out successfully!')
+            })
+            .catch(error => {
+                console.error(error.message)
+            })
+    }
 
     const link = <>
         <li><NavLink to="/"
             style={({ isActive }) => {
                 return {
-                    color: isActive? '#ff3837' : '',
-                    borderBottom: isActive ? "2px solid #ff3837" : "black",
+                    color: isActive? '#ff0061' : '',
                     fontWeight: isActive ? "bold" : "",
                     background: isActive ? "none" : '',
                     
@@ -32,6 +30,51 @@ const Navbar = () => {
             }}
 
         >Home</NavLink></li>
+
+        <li><NavLink to="/addJob"
+            style={({ isActive }) => {
+                return {
+                    color: isActive? '#ff0061' : '',
+                    fontWeight: isActive ? "bold" : "",
+                    background: isActive ? "none" : '',
+                    
+                };
+            }}
+
+        >Add Job</NavLink></li>
+
+        <li><NavLink to="/myPostedJob"
+            style={({ isActive }) => {
+                return {
+                    color: isActive? '#ff0061' : '',
+                    fontWeight: isActive ? "bold" : "",
+                    background: isActive ? "none" : '',
+                };
+            }}
+
+        >My Posted Jobs</NavLink></li>
+
+        <li><NavLink to="/myBids"
+            style={({ isActive }) => {
+                return {
+                    color: isActive? '#ff0061' : '',
+                    fontWeight: isActive ? "bold" : "",
+                    background: isActive ? "none" : '',
+                };
+            }}
+
+        >My Bids</NavLink></li>
+
+        <li><NavLink to="/bidRequest"
+            style={({ isActive }) => {
+                return {
+                    color: isActive? '#ff0061' : '',
+                    fontWeight: isActive ? "bold" : "",
+                    background: isActive ? "none" : '',
+                };
+            }}
+
+        >Bid Request</NavLink></li>
        
 
     </>
@@ -46,7 +89,7 @@ const Navbar = () => {
                         {link}
                     </ul>
                 </div>
-               <Link to='/' className=""><h2>MartPlace</h2></Link>
+               <Link to='/' className=" text-3xl font-bold"><h2><span className="text-[#4e002d]">Mart</span><span className="text-[#ff0061]">Place</span></h2></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -54,10 +97,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {/* <div className=" ">
+                <div className=" ">
                     
                         {
-                            user ? <div className="flex flex-col space-y-1" >
+                            user ? <div className="flex btn btn-ghost space-y-1" >
                                 <img className="w-8 rounded-full" src={user?.photoURL} alt="" />
                                 <h2 className="text-sm font-light">{user?.displayName} </h2>
                                 
@@ -69,11 +112,11 @@ const Navbar = () => {
                 </div>
                 {
                     user ?
-                        <button onClick={handleSignOut} className="btn btn-ghost">SignOut</button>
+                        <button onClick={handleSignOut} className="btn btn-ghost text-[#4e002d] normal-case font-semibold">SignOut</button>
                         :
-                        <Link to='/login' className="btn btn-ghost">Login</Link>
-                } */}
-                <Link to='/signIn' className="btn btn-ghost">Login</Link>
+                        <Link to='/signIn' className="btn btn-ghost text-[#4e002d] normal-case font-semibold">Login</Link>
+                }
+               
             </div>
         </div>
     );
