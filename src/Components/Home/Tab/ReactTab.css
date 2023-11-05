@@ -1,0 +1,8 @@
+.react-tabs__tab--selected {
+    color: #ff0061; 
+    font-weight: bold; 
+    border-color: #4e002d;
+    
+  }
+  
+  /* text-[#4e002d] hover:text-[#ff0061] */
