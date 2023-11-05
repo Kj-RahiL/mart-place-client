@@ -1,21 +1,60 @@
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import register from './register.json'
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 
 const SignUp = () => {
+    const { createUser } = useContext(AuthContext)
     const handleSignUp = (e) => {
         e.preventDefault()
         console.log('handle sign up')
+        const form = e.target
+        const name = form.name.value
+        const photo = form.photo.value
+        const email = form.email.value
+        const password = form.password.value
+        console.log(name, photo, password, email)
+
+        // password validation
+        if (password.length < 6) {
+            toast.error('Password should be 6 character')
+            return;
+        }
+        else if (!/.*[A-Z].*/.test(password)) {
+            toast.error('Please, at least one capital latter')
+            return;
+        }
+        else if (!/.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-].*/.test(password)) {
+            toast.error('Please, at least one special character')
+
+            return;
+        }
+
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user)
+
+                toast.success('User Sign Up Successfully!')
+                form.reset('')
+                //   navigate(location?.state? location.state :'/')
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error(error.message);
+            })
+
     }
 
     return (
         <div className="hero min-h-screen bg-base-200 ">
-            
+
             <div className="hero-content flex-col md:flex-row max-w-5xl mx-auto">
                 <div className="text-center hidden sm:block max-w-xl flex-1">
                     <div className="w-96">
-                    <Lottie animationData={register}></Lottie> 
+                        <Lottie animationData={register}></Lottie>
                     </div>
 
                 </div>
@@ -34,7 +73,7 @@ const SignUp = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">PhotoUrl</span>
+                                <span className="label-text">PhotoURL</span>
                             </label>
                             <input type="link" name="photo" placeholder="Photo" className="input input-bordered" required />
                         </div>
