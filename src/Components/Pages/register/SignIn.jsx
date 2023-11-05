@@ -2,10 +2,44 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import loginAni from './loginAni.json'
+import { toast } from "react-toastify";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { useContext } from "react";
 const SignIn = () => {
+    const { signInUser, googleLogin } = useContext(AuthContext)
+    // const location = useLocation();
+    // const navigate = useNavigate()
+
     const handleSignIn = (e) => {
         e.preventDefault()
-        console.log('handle sign in')
+        const form = e.target
+        const email = form.email.value
+        const password = form.password.value
+        console.log(password, email)
+
+        signInUser(email, password)
+            .then(result => {
+                console.log(result.user)
+               toast.success('User Log In Successfully!')
+                form.reset('')
+                // navigate(location?.state ? location.state : '/')
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error("Oops!! password or email doesn't match. please valid password or email");
+            })
+
+            
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                console.log('from login', result.user)
+            })
+            .catch(error => {
+                console.error(error.message);
+            })
     }
     return (
 
@@ -21,7 +55,7 @@ const SignIn = () => {
                         <h1 className="text-5xl font-bold">Welcome Back!!</h1>
                         <p className="text-lg text-gray-500 font-semibold">Log In to Your MartPlace Account!</p>
                         <div className="card-body mb-5">
-                            <button className="flex w-full  justify-center btn text-xl normal-case font-medium"><FcGoogle></FcGoogle> Continue With Google</button>
+                            <button onClick={handleGoogleLogin} className="flex w-full  justify-center btn text-xl normal-case font-medium"><FcGoogle></FcGoogle> Continue With Google</button>
                         </div>
                     </div>
                     <form onSubmit={handleSignIn} className="card-body md:mx-8">
