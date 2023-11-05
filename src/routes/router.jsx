@@ -3,6 +3,10 @@ import Home from "../Components/Home/Home";
 import Root from "../Layouts/Root";
 import SignIn from "../Components/Pages/register/SignIn";
 import SignUp from "../Components/Pages/register/SignUp";
+import AddJob from "../Components/Pages/Addjob/AddJob";
+import MyPostedJobs from "../Components/Pages/MyPostedJobs/MyPostedJobs";
+import MyBids from "../Components/Pages/MyBids/MyBids";
+import BidRequest from "../Components/Pages/BidRequest/BidRequest";
 
 
 
@@ -16,20 +20,20 @@ const router = createBrowserRouter([
             element:<Home></Home>
         },
         {
-            path:'/',
-            element:<Home></Home>
+            path:'/addJob',
+            element:<AddJob></AddJob>
         },
         {
-            path:'/',
-            element:<Home></Home>
+            path:'/myPostedJob',
+            element:<MyPostedJobs></MyPostedJobs>
         },
         {
-            path:'/',
-            element:<Home></Home>
+            path:'/myBids',
+            element:<MyBids></MyBids>
         },
         {
-            path:'/',
-            element:<Home></Home>
+            path:'/bidRequest',
+            element:<BidRequest></BidRequest>
         },
         {
           path:'/signIn',
