@@ -10,8 +10,8 @@ const SignIn = () => {
     return (
 
         <div className="hero min-h-screen bg-base-200 ">
-            <div className="hero-content flex-col lg:flex-row max-w-5xl mx-auto gap-5">
-                <div className="text-center lg:text-left border flex-1">
+            <div className="hero-content flex-col md:flex-row max-w-5xl mx-auto gap-5">
+                <div className="text-center md:text-left hidden sm:block flex-1">
                     <div className="">
                         <Lottie animationData={loginAni}></Lottie>
                     </div>
@@ -45,12 +45,12 @@ const SignIn = () => {
 
                         </div>
                         <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
-                            Already have an account?
+                            New to here? Please 
                             <Link
                                 className="font-medium text-red-500 transition-colors hover:text-blue-700"
                                 to='/signUp'
                             >
-                                Sign Up
+                                <span> Sign Up</span>
                             </Link>
                         </p>
                     </form>
