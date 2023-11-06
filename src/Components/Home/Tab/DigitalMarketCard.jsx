@@ -1,17 +1,24 @@
 
 
-const WebDeveloper = ({ tab }) => {
+const DigitalMarketCard = ({tab}) => {
     const { title, deadline, minPrice, maxPrice, description } = tab
     return (
         <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
                 <div className="mx-auto">
-                    <svg className="w-20 h-20 mb-4 text-[#4e002d]"
-                        aria-hidden="true"
+                    <svg
                         xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
                         fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z" />
+                        aria-hidden="true"
+                        className="w-20 h-20 mb-4 text-[#4e002d]"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M9.315 7.584C12.195 3.883 16.695 1.5 21.75 1.5a.75.75 0 01.75.75c0 5.056-2.383 9.555-6.084 12.436A6.75 6.75 0 019.75 22.5a.75.75 0 01-.75-.75v-4.131A15.838 15.838 0 016.382 15H2.25a.75.75 0 01-.75-.75 6.75 6.75 0 017.815-6.666zM15 6.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z"
+                            clipRule="evenodd"
+                        ></path>
+                        <path d="M5.26 17.242a.75.75 0 10-.897-1.203 5.243 5.243 0 00-2.05 5.022.75.75 0 00.625.627 5.243 5.243 0 005.022-2.051.75.75 0 10-1.202-.897 3.744 3.744 0 01-3.008 1.51c0-1.23.592-2.323 1.51-3.008z"></path>
                     </svg>
                 </div>
 
@@ -27,4 +34,4 @@ const WebDeveloper = ({ tab }) => {
     );
 };
 
-export default WebDeveloper;
+export default DigitalMarketCard;

@@ -5,37 +5,39 @@ import 'react-tabs/style/react-tabs.css';
 import './ReactTab.css'
 import { useEffect } from 'react';
 import WebDeveloper from './WebDeveloper';
+import DigitalMarketCard from './DigitalMarketCard';
+import GraphicsCard from './GraphicsCard';
 
 
 
 const ReactTab = () => {
     const [tabIndex, setTabIndex] = useState(0);
-    const [webTab, setWebTab]= useState([])
-    const [digitalTab, setDigitalTab]= useState([])
-    const [graphicsTab, setGraphicsTab]= useState([])
+    const [webTab, setWebTab] = useState([])
+    const [digitalTab, setDigitalTab] = useState([])
+    const [graphicsTab, setGraphicsTab] = useState([])
 
     // web development
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/jobs/Web%20Development')
-        .then(res=>res.json())
-        .then(data=>setWebTab(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setWebTab(data))
+    }, [])
 
     // digital marketing
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/jobs/Digital%20Marketing')
-        .then(res=>res.json())
-        .then(data=>setDigitalTab(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setDigitalTab(data))
+    }, [])
 
     // graphics design
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/jobs/Graphics%20Design')
-        .then(res=>res.json())
-        .then(data=>setGraphicsTab(data))
-    },[])
-    console.log(webTab)
-    console.log(digitalTab)
+            .then(res => res.json())
+            .then(data => setGraphicsTab(data))
+    }, [])
+    // console.log(webTab)
+    // console.log(digitalTab)
     return (
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
             <TabList>
@@ -44,17 +46,31 @@ const ReactTab = () => {
                 <Tab><span className='text-2xl font-bold'>Graphics Design</span></Tab>
             </TabList>
             <TabPanel>
-                {
-                    webTab.map(tab=><WebDeveloper 
-                        key={tab._id} tab={tab}
+                <div className='grid grid-cols-3 gap-5'>
+                    {
+                        webTab.map(tab => <WebDeveloper
+                            key={tab._id} tab={tab}
                         ></WebDeveloper>)
-                }
-            </TabPanel>
-           <TabPanel>
-                <h3>hi moye</h3>
+                    }
+                </div>
             </TabPanel>
             <TabPanel>
-                <h3>hello world</h3>
+            <div className='grid grid-cols-3 gap-5'>
+                    {
+                        digitalTab.map(tab => <DigitalMarketCard
+                            key={tab._id} tab={tab}
+                        ></DigitalMarketCard>)
+                    }
+                </div>
+            </TabPanel>
+            <TabPanel>
+            <div className='grid grid-cols-3 gap-5'>
+                    {
+                        graphicsTab.map(tab => <GraphicsCard
+                            key={tab._id} tab={tab}
+                        ></GraphicsCard>)
+                    }
+                </div>
             </TabPanel>
         </Tabs>
     );

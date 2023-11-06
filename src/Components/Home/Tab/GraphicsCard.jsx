@@ -1,12 +1,12 @@
 
 
-const WebDeveloper = ({ tab }) => {
+const GraphicsCard = ({tab}) => {
     const { title, deadline, minPrice, maxPrice, description } = tab
     return (
         <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
                 <div className="mx-auto">
-                    <svg className="w-20 h-20 mb-4 text-[#4e002d]"
+                <svg className="w-20 h-20 mb-4 text-[#4e002d]"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -27,4 +27,4 @@ const WebDeveloper = ({ tab }) => {
     );
 };
 
-export default WebDeveloper;
+export default GraphicsCard;
