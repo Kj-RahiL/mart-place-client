@@ -1,16 +1,46 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 
 const AddJob = () => {
     const {user} = useContext(AuthContext)
     console.log(user.email)
+    const handleAddJob = e =>{
+        e.preventDefault()
+        const form = e.target 
+        const email = form.email.value
+        const title = form.title.value
+        const category = form.category.value
+        const deadline = form.deadline.value
+        const minPrice = form.minPrice.value
+        const maxPrice = form.maxPrice.value
+        const description = form.description.value
+        const job = {email, title, category, deadline, minPrice, maxPrice, description}
+
+        fetch('http://localhost:5000/jobs',{
+            method:"POST",
+            headers:{
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(job)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            //   form.reset('')
+            toast.success('added job successfully')
+        })
+        
+      console.log(job)
+    }
+
     return (
         <div className="w-3/4 mx-auto  px-20 py-5 bg-[#ff00620f] card">
             <div className="space-y-2">
                 <h2 className="text-3xl text-center py-5 font-bold text-[#4e002e]">Add New Product</h2>
             </div>
-            <form  >
+            <form  onSubmit={handleAddJob}>
                 {/* email and title row */}
                 <div className="md:flex mb-8 ">
 
@@ -20,7 +50,7 @@ const AddJob = () => {
                         </label>
                         <label className="input-group">
                             <input type="text"
-                                name="Email"
+                                name="email"
                                 value={user.email}
                                 readOnly
                                 placeholder="Enter Email" className="input input-bordered w-full" />
