@@ -3,7 +3,7 @@
 const GraphicsCard = ({tab}) => {
     const { title, deadline, minPrice, maxPrice, description } = tab
     return (
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-slate-50 shadow-md">
             <div className="card-body">
                 <div className="mx-auto">
                 <svg className="w-20 h-20 mb-4 text-[#4e002d]"

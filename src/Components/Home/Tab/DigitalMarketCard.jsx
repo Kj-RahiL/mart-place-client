@@ -3,7 +3,7 @@
 const DigitalMarketCard = ({tab}) => {
     const { title, deadline, minPrice, maxPrice, description } = tab
     return (
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-slate-50 shadow-md">
             <div className="card-body">
                 <div className="mx-auto">
                     <svg

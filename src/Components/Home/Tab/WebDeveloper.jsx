@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 
 
 const WebDeveloper = ({ tab }) => {
-    const { title, deadline, minPrice, maxPrice, description } = tab
+    const {_id, title, deadline, minPrice, maxPrice, description } = tab;
+    console.log(_id)
     return (
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-slate-50 shadow-md">
             <div className="card-body">
                 <div className="mx-auto">
                     <svg className="w-20 h-20 mb-4 text-[#4e002d]"
@@ -19,9 +21,9 @@ const WebDeveloper = ({ tab }) => {
                 <p className="text-xl font-semibold">Deadline: {deadline}</p>
                 <p className="text-xl font-semibold ">Salary-Range: <span className="text-[#4e002d]">${minPrice}-{maxPrice}</span></p>
                 <p className="font-medium text-gray-600">{description}</p>
-                <div className="card-actions w-full">
+                <Link to={`/jobDetails/${_id}`} className="card-actions w-full">
                     <button className="btn w-full bg-[#4e002d] hover:bg-[#ff002d] text-white">Bid Now</button>
-                </div>
+                </Link>
             </div>
         </div>
     );

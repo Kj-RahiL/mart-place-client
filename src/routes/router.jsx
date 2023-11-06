@@ -7,6 +7,8 @@ import AddJob from "../Components/Pages/Addjob/AddJob";
 import MyPostedJobs from "../Components/Pages/MyPostedJobs/MyPostedJobs";
 import MyBids from "../Components/Pages/MyBids/MyBids";
 import BidRequest from "../Components/Pages/BidRequest/BidRequest";
+import JobDetails from "../Components/Home/JobDetails/JobDetails";
+import ErrorElement from "../Components/Pages/ErrorElement/ErrorElement";
 
 
 
@@ -14,6 +16,7 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement:<ErrorElement></ErrorElement>,
       children: [
         {
             path:'/',
@@ -22,6 +25,11 @@ const router = createBrowserRouter([
         {
             path:'/addJob',
             element:<AddJob></AddJob>
+        },
+        {
+            path:'/jobDetails/:id',
+            element:<JobDetails></JobDetails>,
+            loader: ({params})=> fetch(`http://localhost:5000/jobDetails/${params.id}`)
         },
         {
             path:'/myPostedJob',
