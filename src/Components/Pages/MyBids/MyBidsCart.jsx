@@ -1,4 +1,5 @@
-
+import 'react-step-progress-bar/styles.css';
+import { ProgressBar } from 'react-step-progress-bar';
 
 
 const MyBidsCart = ({bid}) => {
@@ -16,7 +17,10 @@ const MyBidsCart = ({bid}) => {
             {}
             <td>
                 {
-                    status === 'accepted' ? <span>in progress</span> : status === ' reject' ? <span>canceled</span> : status
+                    status === 'accepted' ? <ProgressBar
+                    percent={75}
+                    filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
+                  /> : status === ' reject' ? <span>canceled</span> : status
                 } 
             </td>
             <td>

@@ -1,6 +1,6 @@
 
 
-const BidReqCart = ({ bidReq, handleAccept }) => {
+const BidReqCart = ({ bidReq, handleAccept, handleReject }) => {
     const { _id, title, userEmail, price, deadline, status } = bidReq
     console.log(status)
     return (
@@ -14,7 +14,7 @@ const BidReqCart = ({ bidReq, handleAccept }) => {
                     {
                         status === "pending" ? <div className="flex justify-between my-5">
                             <button onClick={() => handleAccept(_id)} className="btn btn-outline">Accepted</button>
-                            <button className="btn btn-outline">Reject</button>
+                            <button onClick={() => handleReject(_id)} className="btn btn-outline">Reject</button>
                         </div> :
                             <div className="flex justify-between">
                                 <button className="btn btn-outline btn-disabled">Accepted</button>

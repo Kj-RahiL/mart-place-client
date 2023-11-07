@@ -37,6 +37,29 @@ const BidRequest = () => {
             })
 
     }
+    const handleReject = id => {
+        fetch(`http://localhost:5000/myBid/${id}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: 'reject' })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    // update
+                    const remaining = bidRequest.filter(bid => bid._id !== id)
+                    const updated = bidRequest.find(bid => bid._id !== id)
+                    updated.status = 'reject'
+                    const newBid = [updated, ...remaining]
+                    setBidRequest(newBid)
+                    toast.success('request rejected')
+                }
+            })
+
+    }
     // console.log('hewjf', id)
     return (
         <div className=" bg-base-100">
@@ -48,6 +71,7 @@ const BidRequest = () => {
                         key={bidReq._id}
                         bidReq={bidReq}
                         handleAccept={handleAccept}
+                        handleReject={handleReject}
                     ></BidReqCart>)
                 }
             </div>
