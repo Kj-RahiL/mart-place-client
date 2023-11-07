@@ -18,21 +18,21 @@ const ReactTab = () => {
 
     // web development
     useEffect(() => {
-        fetch('http://localhost:5000/jobs/Web%20Development')
+        fetch('http://localhost:5000/jobDetails/Web%20Development')
             .then(res => res.json())
             .then(data => setWebTab(data))
     }, [])
 
     // digital marketing
     useEffect(() => {
-        fetch('http://localhost:5000/jobs/Digital%20Marketing')
+        fetch('http://localhost:5000/jobDetails/Digital%20Marketing')
             .then(res => res.json())
             .then(data => setDigitalTab(data))
     }, [])
 
     // graphics design
     useEffect(() => {
-        fetch('http://localhost:5000/jobs/Graphics%20Design')
+        fetch('http://localhost:5000/jobDetails/Graphics%20Design')
             .then(res => res.json())
             .then(data => setGraphicsTab(data))
     }, [])

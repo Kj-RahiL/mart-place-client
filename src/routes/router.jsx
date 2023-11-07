@@ -9,6 +9,8 @@ import MyBids from "../Components/Pages/MyBids/MyBids";
 import BidRequest from "../Components/Pages/BidRequest/BidRequest";
 import JobDetails from "../Components/Home/JobDetails/JobDetails";
 import ErrorElement from "../Components/Pages/ErrorElement/ErrorElement";
+import PrivateRoute from "./PrivateRoute";
+import Update from "../Components/Pages/MyPostedJobs/Update";
 
 
 
@@ -24,24 +26,29 @@ const router = createBrowserRouter([
         },
         {
             path:'/addJob',
-            element:<AddJob></AddJob>
+            element:<PrivateRoute><AddJob></AddJob></PrivateRoute>
         },
         {
             path:'/jobDetails/:id',
-            element:<JobDetails></JobDetails>,
-            loader: ({params})=> fetch(`http://localhost:5000/jobDetails/${params.id}`)
+            element:<PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
+            loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`)
+        },
+        {
+            path: "/updateJob/:id",
+            element: <PrivateRoute><Update></Update></PrivateRoute>,
+            loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
         },
         {
             path:'/myPostedJob',
-            element:<MyPostedJobs></MyPostedJobs>
+            element:<PrivateRoute><MyPostedJobs></MyPostedJobs></PrivateRoute>
         },
         {
             path:'/myBids',
-            element:<MyBids></MyBids>
+            element:<PrivateRoute><MyBids></MyBids></PrivateRoute>
         },
         {
             path:'/bidRequest',
-            element:<BidRequest></BidRequest>
+            element:<PrivateRoute><BidRequest></BidRequest></PrivateRoute>
         },
         {
           path:'/signIn',

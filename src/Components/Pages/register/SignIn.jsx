@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import loginAni from './loginAni.json'
@@ -7,8 +7,8 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
 const SignIn = () => {
     const { signInUser, googleLogin } = useContext(AuthContext)
-    // const location = useLocation();
-    // const navigate = useNavigate()
+    const location = useLocation();
+    const navigate = useNavigate()
 
     const handleSignIn = (e) => {
         e.preventDefault()
@@ -20,9 +20,9 @@ const SignIn = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
-               toast.success('User Log In Successfully!')
+                navigate(location?.state ? location.state : '/')
+                toast.success('User Log In Successfully!')
                 form.reset('')
-                // navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
                 console.error(error);

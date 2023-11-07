@@ -1,10 +1,79 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+// import axios from "axios";
+// import { Link } from "react-router-dom";
 
 
-const MyPostedCart = ({ post }) => {
-    const {user}= useContext(AuthContext)
-    const { title, deadline, minPrice, maxPrice, description } = post;
+const MyPostedCart = ({ post, postedJob, setPostedJobs }) => {
+    const { user } = useContext(AuthContext)
+    const { _id, title, category, deadline, minPrice, maxPrice, description } = post;
+
+    const handleUpdate = (e) => {
+
+        e.preventDefault()
+        const form = e.target
+        const email = form.email.value
+        const title = form.title.value
+        const category = form.category.value
+        const deadline = form.deadline.value
+        const minPrice = form.minPrice.value
+        const maxPrice = form.maxPrice.value
+        const description = form.description.value
+        const job = { email, title, category, deadline, minPrice, maxPrice, description }
+
+        fetch(`http://localhost:5000/jobs/${_id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(job)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                form.reset('')
+                toast.success('added job successfully')
+            })
+
+        console.log(job)
+    }
+
+    const handleDelete = _id => {
+        console.log('handle delete', _id)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/jobs/${_id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            const remaining = postedJob.filter(job => job._id !== _id)
+                            setPostedJobs(remaining)
+
+                        }
+                    })
+
+            }
+        })
+    }
+
     return (
         <div className="card bg-slate-50 shadow-md">
             <div className="card-body">
@@ -23,9 +92,11 @@ const MyPostedCart = ({ post }) => {
                 <p className="text-xl font-semibold ">Salary-Range: <span className="text-[#4e002d]">${minPrice}-{maxPrice}</span></p>
                 <p className="font-medium text-gray-600">{description}</p>
                 <div className="flex justify-between">
-                    <button className="btn btn-outline border-[#4e002d] hover:bg-[#4e002d]">Delete</button>
 
-                 {/* updated button and click showing modal */}
+                    <button onClick={() => handleDelete(_id)} className="btn btn-outline border-[#4e002d] hover:bg-[#4e002d]">Delete</button>
+
+
+                    {/* updated button and click showing modal */}
                     <button className="btn btn-outline border-[#4e002d] hover:bg-[#4e002d]" onClick={() => document.getElementById('my_modal_3').showModal()}>Update</button>
                     <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
@@ -36,7 +107,7 @@ const MyPostedCart = ({ post }) => {
 
                             <h3 className=" my-4 font-bold text-lg text-[#4e002d]">Update Job: <span className="text-[#ff0061]">{title}</span></h3>
 
-                            <form >
+                            <form onSubmit={handleUpdate}>
                                 {/* email and title row */}
                                 <div className="md:flex mb-8 ">
 
@@ -60,6 +131,7 @@ const MyPostedCart = ({ post }) => {
                                         <label className="input-group">
                                             <input type="text"
                                                 name="title"
+                                                defaultValue={title}
                                                 placeholder="Job title"
                                                 className="input input-bordered w-full" />
                                         </label>
@@ -72,7 +144,8 @@ const MyPostedCart = ({ post }) => {
                                             <span className="label-text text-xl font-medium text-[#63433f]">Category</span>
                                         </label>
                                         <select name="category" className="select select-bordered">
-                                            <option disabled selected>Pick one any category</option>
+                                            <option disabled selected
+                                                defaultValue={category}>Pick one any category</option>
                                             <option>Web Development</option>
                                             <option>Digital Marketing</option>
                                             <option>Graphics Design</option>
@@ -83,7 +156,9 @@ const MyPostedCart = ({ post }) => {
                                             <span className="label-text text-xl font-medium text-[#63433f]">Deadline</span>
                                         </label>
                                         <label className="input-group">
-                                            <input type="date" name="deadline" placeholder="Enter deadline" className="input input-bordered w-full" />
+                                            <input type="date" name="deadline"
+                                                defaultValue={deadline}
+                                                placeholder="Enter deadline" className="input input-bordered w-full" />
                                         </label>
                                     </div>
                                 </div>
@@ -94,7 +169,9 @@ const MyPostedCart = ({ post }) => {
                                             <span className="label-text text-xl font-medium text-[#63433f]">Minimum price</span>
                                         </label>
                                         <label className="input-group">
-                                            <input type="text" name="minPrice" placeholder="Enter Minimum price" className="input input-bordered w-full" />
+                                            <input type="text" name="minPrice"
+                                                defaultValue={minPrice}
+                                                placeholder="Enter Minimum price" className="input input-bordered w-full" />
                                         </label>
                                     </div>
                                     <div className="form-control md:w-1/2 md:ml-4">
@@ -102,7 +179,9 @@ const MyPostedCart = ({ post }) => {
                                             <span className="label-text text-xl font-medium text-[#63433f]"> Maximum price</span>
                                         </label>
                                         <label className="input-group">
-                                            <input type="text" name="maxPrice" placeholder="Enter Maximum price" className="input input-bordered w-full" />
+                                            <input type="text" name="maxPrice"
+                                                defaultValue={maxPrice}
+                                                placeholder="Enter Maximum price" className="input input-bordered w-full" />
                                         </label>
                                     </div>
                                 </div>
@@ -112,7 +191,9 @@ const MyPostedCart = ({ post }) => {
                                         <span className="label-text text-xl font-medium text-[#63433f]">Description</span>
                                     </label>
                                     <label className="input-group">
-                                        <textarea name="description" className="textarea textarea-bordered w-full" placeholder="Write Short Description"></textarea>
+                                        <textarea name="description"
+                                            defaultValue={description}
+                                            className="textarea textarea-bordered w-full" placeholder="Write Short Description"></textarea>
                                     </label>
                                 </div>
                                 <input className="btn btn-block normal-case hover:bg-[#ff0061] bg-[#4e002d] text-white" type="submit" value="Update Job" />

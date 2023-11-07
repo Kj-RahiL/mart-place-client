@@ -17,7 +17,12 @@ const MyPostedJobs = () => {
             <h2>postedJob: {postedJob.length}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto">
                 {
-                    postedJob.map(post => <MyPostedCart key={post?._id} post={post}></MyPostedCart>)
+                    postedJob.map(post => <MyPostedCart 
+                        key={post?._id} 
+                        post={post}
+                        postedJob={postedJob}
+                        setPostedJobs={setPostedJobs}
+                        ></MyPostedCart>)
                 }
             </div>
         </div>

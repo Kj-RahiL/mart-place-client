@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import register from './register.json'
 import { useContext } from "react";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleSignUp = (e) => {
         e.preventDefault()
         console.log('handle sign up')
@@ -39,7 +40,7 @@ const SignUp = () => {
 
                 toast.success('User Sign Up Successfully!')
                 form.reset('')
-                //   navigate(location?.state? location.state :'/')
+                  navigate(location?.state? location.state :'/')
             })
             .catch(error => {
                 console.error(error);

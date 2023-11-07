@@ -28,7 +28,7 @@ const AddJob = () => {
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
-            //   form.reset('')
+              form.reset('')
             toast.success('added job successfully')
         })
         
