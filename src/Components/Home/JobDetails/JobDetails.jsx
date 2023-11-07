@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const JobDetails = () => {
     const { user } = useContext(AuthContext)
@@ -8,9 +10,29 @@ const JobDetails = () => {
     const { title, email, deadline, minPrice, maxPrice, description } = job;
     console.log(job)
 
-    const handleBid = (e) => {
-        e.preventDefault();
-        console.log('from bid')
+    // const today = new Date()
+    // const year = today.getFullYear();
+    // const month = today.getMonth()
+    // const day = today.getDay()
+    // const formattedDate = `${year}-${month}-${day}`;
+
+    const handleBid = e => {
+        e.preventDefault()
+        const form = e.target
+        const userEmail = form.userEmail.value
+        const buyerEmail = form.buyerEmail.value
+        const price = form.price.value
+        const deadline = form.deadline.value
+        const myBid = { userEmail, buyerEmail, title, price, deadline }
+
+        axios.post('http://localhost:5000/myBid', myBid)
+            .then((res)=>{
+                toast.success('Your bid successfully')
+                console.log(res.data)
+                form.reset('')
+            })
+
+            console.log(myBid)
     }
     return (
         <div className="card w-96 mx-auto mt-20 bg-slate-50 shadow-md">
@@ -39,7 +61,7 @@ const JobDetails = () => {
                                         <span className="label-text text-xl font-medium text-[#63433f]">Price</span>
                                     </label>
                                     <label className="input-group">
-                                        <input type="text" name="deadline" placeholder="Your Biding Amount" className="input input-bordered w-full" />
+                                        <input type="text" name="price" placeholder="Your Biding Amount" className="input input-bordered w-full" />
                                     </label>
                                 </div>
                                 <div className="form-control">
@@ -47,7 +69,7 @@ const JobDetails = () => {
                                         <span className="label-text text-xl font-medium text-[#63433f]">Deadline</span>
                                     </label>
                                     <label className="input-group">
-                                        <input type="text" name="deadline" placeholder="Enter deadline" className="input input-bordered w-full" />
+                                        <input type="date" name="deadline" className="input input-bordered w-full" />
                                     </label>
                                 </div>
                                 <div className="form-control">
@@ -64,20 +86,20 @@ const JobDetails = () => {
                                 </div>
                                 <div className="form-control ">
                                     <label className="label">
-                                        <span className="label-text text-xl font-medium text-[#63433f]">Job Owner Email</span>
+                                        <span className="label-text text-xl font-medium text-[#63433f]">Buyer Email</span>
                                     </label>
                                     <label className="input-group">
                                         <input type="text"
-                                            name="ownerEmail"
+                                            name="buyerEmail"
                                             value={email}
                                             readOnly
                                             className="input input-bordered w-full" />
                                     </label>
                                 </div>
                                 {
-                                    user.email === email ? 
-                                    <input disabled="disabled" className="btn btn-block my-4 normal-case hover:bg-[#4e002d] bg-[#ff0061] text-white" type="submit" value="Bid on the Project" /> :
-                                    <input className="btn btn-block my-4 normal-case hover:bg-[#4e002d] bg-[#ff0061] text-white" type="submit" value="Bid on the Project" />
+                                    user.email === email ?
+                                        <input disabled="disabled" className="btn btn-block my-4 normal-case hover:bg-[#4e002d] bg-[#ff0061] text-white" type="submit" value="Bid on the Project" /> :
+                                        <input className="btn btn-block my-4 normal-case hover:bg-[#4e002d] bg-[#ff0061] text-white" type="submit" value="Bid on the Project" />
                                 }
                             </form>
                         </div>

@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 
 
 const DigitalMarketCard = ({tab}) => {
-    const { title, deadline, minPrice, maxPrice, description } = tab
+    const {_id, title, deadline, minPrice, maxPrice, description } = tab
     return (
         <div className="card bg-slate-50 shadow-md">
             <div className="card-body">
@@ -26,9 +27,9 @@ const DigitalMarketCard = ({tab}) => {
                 <p className="text-xl font-semibold">Deadline: {deadline}</p>
                 <p className="text-xl font-semibold ">Salary-Range: <span className="text-[#4e002d]">${minPrice}-{maxPrice}</span></p>
                 <p className="font-medium text-gray-600">{description}</p>
-                <div className="card-actions w-full">
+                <Link to={`/jobDetails/${_id}`} className="card-actions w-full">
                     <button className="btn w-full bg-[#4e002d] hover:bg-[#ff002d] text-white">Bid Now</button>
-                </div>
+                </Link>
             </div>
         </div>
     );
