@@ -14,7 +14,6 @@ const MyBids = () => {
     },[])
     return (
         <div className="my-20 mx-5">
-            <h2 className="text-4xl"> your bookings : {myBid.length}</h2>
 
             <div className="overflow-x-auto">
                 <table className="table">

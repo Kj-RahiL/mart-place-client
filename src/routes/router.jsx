@@ -44,11 +44,13 @@ const router = createBrowserRouter([
         },
         {
             path:'/myBids',
-            element:<PrivateRoute><MyBids></MyBids></PrivateRoute>
+            element:<PrivateRoute><MyBids></MyBids></PrivateRoute>,
+
         },
         {
             path:'/bidRequest',
-            element:<PrivateRoute><BidRequest></BidRequest></PrivateRoute>
+            element:<PrivateRoute><BidRequest></BidRequest></PrivateRoute>,
+            loader: ()=>fetch('http://localhost:5000/myBid')
         },
         {
           path:'/signIn',

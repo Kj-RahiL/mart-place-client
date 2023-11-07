@@ -23,7 +23,7 @@ const JobDetails = () => {
         const buyerEmail = form.buyerEmail.value
         const price = form.price.value
         const deadline = form.deadline.value
-        const myBid = { userEmail, buyerEmail, title, price, deadline }
+        const myBid = { userEmail, buyerEmail, title, price, deadline , status: 'pending' }
 
         axios.post('http://localhost:5000/myBid', myBid)
             .then((res)=>{

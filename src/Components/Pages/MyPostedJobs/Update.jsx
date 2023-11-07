@@ -152,6 +152,3 @@ export default Update;
 
 
 
-{/* <Link to={`/updateJob/${_id}`}>
-    <button className="btn btn-outline border-[#4e002d] hover:bg-[#4e002d]">Update</button>
-</Link> */}
