@@ -2,8 +2,10 @@ import 'react-step-progress-bar/styles.css';
 import { ProgressBar } from 'react-step-progress-bar';
 
 
-const MyBidsCart = ({bid}) => {
-    const {title,buyerEmail,deadline,price, status}=bid
+const MyBidsCart = ({bid, handleComplete}) => {
+    const {_id, title,buyerEmail,deadline,price, status}=bid
+
+    
    
     return (
         <tr>
@@ -20,12 +22,15 @@ const MyBidsCart = ({bid}) => {
                     status === 'accepted' ? <ProgressBar
                     percent={75}
                     filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
-                  /> : status === ' reject' ? <span>canceled</span> : status
+                  /> : 
+                  status === ' reject' ? <span className='text-yellow-500'>canceled</span> : status
                 } 
             </td>
             <td>
                 {
-                    status === 'accepted' ? <span className="btn">complete</span> : <span className='btn' disabled="disabled">complete</span> 
+                    status === 'accepted' ? <span onClick={()=>handleComplete(_id)} className="btn">complete</span> : 
+                    status === 'complete' ? <span className='btn text-[#ff0061]'>completed</span> :
+                    <span className='btn' disabled="disabled">complete</span> 
                 }
             </td>
             {/* <th>
