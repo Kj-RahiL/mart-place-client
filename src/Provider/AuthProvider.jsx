@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import axios from "axios";
 
 const auth = getAuth(app)
 export const AuthContext = createContext(null)
@@ -29,22 +30,40 @@ const AuthProvider = ({ children }) => {
     }
 
     // sign out user
-    const logOut = () =>{
+    const logOut = () => {
         setLoading(true)
         return signOut(auth)
     }
 
     // observe
-   useEffect(()=>{
-    const unSubscribe = onAuthStateChanged(auth, currentUser=>{
-        setLoading(false)
-        setUser(currentUser);
-        console.log('current user', currentUser)
-    })
-    return ()=>{
-        unSubscribe()
-    }
-   },[])
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            const userEmail = currentUser?.email || user?.email
+            const loggedUser = { email: userEmail }
+
+            setLoading(false)
+            setUser(currentUser);
+            console.log('current user', currentUser)
+
+            // get access token
+            if (currentUser) {
+
+                axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data)
+                    })
+            }
+            else {
+                axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token remove', res.data)
+                    })
+            }
+        })
+        return () => {
+            unSubscribe()
+        }
+    }, [])
 
     const userInfo = {
         user,

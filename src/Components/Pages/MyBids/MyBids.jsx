@@ -3,19 +3,30 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import MyBidsCart from "./MyBidsCart";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const MyBids = () => {
-    const {user} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
     const [myBid, setMyBid] = useState([])
     const url = `http://localhost:5000/myBid?userEmail=${user?.email}`
-    useEffect(()=>{
-        // fetch(url)
-        // .then(res=>res.json())
-        // .then(data=>setMyBid(data))
-        axios.get(url, {withCredentials:true})
-        .then(res=>setMyBid(res.data))
-    },[])
+    useEffect(() => {
+        axios.get(url, { withCredentials: true })
+            .then(res => setMyBid(res.data))
+            .catch(error => {
+                if (error.response.status === 401 || error.response.status === 403) {
+                    logOut()
+                        .then(() => {
+                            navigate('/signIn')
+                            toast.error('UnAuthorized Access, LogOut user')
+                        })
+                        .catch(error => {
+                            console.error(error.message)
+                        })
+                }
+            });
+    }, [])
 
     const handleComplete = id => {
         fetch(`http://localhost:5000/myBid/${id}`, {
@@ -58,9 +69,9 @@ const MyBids = () => {
                         </tr>
                     </thead>
                     <tbody className="text-lg font-medium text-gray-700">
-                    
+
                         {
-                            myBid.map(bid=> <MyBidsCart
+                            myBid.map(bid => <MyBidsCart
                                 key={bid._id} bid={bid}
                                 handleComplete={handleComplete}
                             ></MyBidsCart>)

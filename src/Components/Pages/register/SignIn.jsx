@@ -23,17 +23,11 @@ const SignIn = () => {
                 console.log(result.user)
                 const user = { email }
 
+                navigate(location?.state ? location.state : '/')
+                toast.success('User Log In Successfully!')
+                // form.reset('')
 
-                // get access token
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
-                    .then(res => {
-                        console.log(res.data)
-                        if (res.data.success) {
-                            navigate(location?.state ? location.state : '/')
-                            toast.success('User Log In Successfully!')
-                            form.reset('')
-                        }
-                    })
+                
 
             })
             .catch(error => {

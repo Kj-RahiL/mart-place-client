@@ -1,18 +1,43 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import BidReqCart from "./BidReqCart";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const BidRequest = () => {
-    const { user } = useContext(AuthContext)
-    const bids = useLoaderData()
+    const { user, logOut } = useContext(AuthContext)
     const [bidRequest, setBidRequest] = useState([])
-    useEffect(() => {
-        const myBid = bids.filter(bid => bid.buyerEmail == user.email)
-        setBidRequest(myBid)
-    }, [])
+    const navigate = useNavigate()
+
+      // const bids = useLoaderData()
+    // // console.log(bids)
+    // useEffect(() => {
+    //     const myBid = bids?.filter(bid => bid.buyerEmail == user.email)
+    //     setBidRequest(myBid)
+    // }, [])
+
+    const url = `http://localhost:5000/myBid?buyerEmail=${user?.email}`
+    useEffect(()=>{
+
+        axios.get(url, {withCredentials:true})
+        .then(res=>setBidRequest(res.data))
+        .catch(error => {
+            if (error.response.status === 401 || error.response.status === 403) {
+                logOut()
+                    .then(() => {
+                        navigate('/signIn')
+                        toast.error('UnAuthorized Access, LogOut user')
+                    })
+                    .catch(error => {
+                        console.error(error.message)
+                    })
+            }
+        });
+    },[])
+
 
     const handleAccept = id => {
         fetch(`http://localhost:5000/myBid/${id}`, {
@@ -27,8 +52,8 @@ const BidRequest = () => {
                 console.log(data)
                 if (data.modifiedCount > 0) {
                     // update
-                    const remaining = bidRequest.filter(bid => bid._id !== id)
-                    const updated = bidRequest.find(bid => bid._id !== id)
+                    const remaining = bidRequest?.filter(bid => bid._id !== id)
+                    const updated = bidRequest?.find(bid => bid._id !== id)
                     updated.status = 'accepted'
                     const newBid = [updated, ...remaining]
                     setBidRequest(newBid)
@@ -63,7 +88,6 @@ const BidRequest = () => {
     // console.log('hewjf', id)
     return (
         <div className=" bg-base-100">
-            <h2>bid:{bids.length}</h2>
             <h2>bid rew:{bidRequest.length}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
                 {

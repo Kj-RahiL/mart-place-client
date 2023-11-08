@@ -3,7 +3,7 @@ import { ProgressBar } from 'react-step-progress-bar';
 
 
 const MyBidsCart = ({bid, handleComplete}) => {
-    const {_id, title,buyerEmail,deadline,price, status}=bid
+    const {_id, title, buyerEmail, deadline,price, status}=bid
 
     
    

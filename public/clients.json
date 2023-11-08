@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "clientName": "Sophia Garcia",
+        "img": "https://example.com/sophia-garcia.jpg",
+        "position": "UI/UX Designer",
+        "reviews": "Innovative designs and user-friendly interfaces."
+    },
+    {
+        "id": 2,
+        "clientName": "Alex Brown",
+        "img": "https://example.com/alex-brown.jpg",
+        "position": "Content Writer",
+        "reviews": "Exceptional writing skills and creativity."
+    },
+    {
+        "id": 3,
+        "clientName": "Michael Johnson",
+        "img": "https://example.com/michael-johnson.jpg",
+        "position": "Digital Marketer",
+        "reviews": "Skilled team and timely delivery of projects."
+    },
+    {
+        "id": 4,
+        "clientName": "Emily Williams",
+        "img": "https://example.com/emily-williams.jpg",
+        "position": "SEO Specialist",
+        "reviews": "Creative designs and easy to work with."
+    }
+   
+]
