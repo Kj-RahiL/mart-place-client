@@ -1,6 +1,7 @@
 import Banner from "./Banner/Banner";
 import ClientReview from "./ClientsReview/ClientReview";
 import ReactTab from "./Tab/ReactTab";
+import WhyChose from "./WhyChoose.jsx/WhyChose";
 
 
 
@@ -12,6 +13,7 @@ const Home = () => {
                 <h2 className="text-4xl font-semibold my-10 text-gray-900">Find Out <span className="text-[#ff0061]">Jobs</span></h2>
                 <ReactTab></ReactTab>
             </div>
+            <WhyChose></WhyChose>
             <ClientReview></ClientReview>
         </div>
     );

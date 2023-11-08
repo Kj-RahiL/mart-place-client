@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1,
+        "title": "One Time Payment",
+        "icons": "https://i.ibb.co/F8Z9qY1/icons8-coins.gif",
+        "description": "One-time payment is a transaction method in which a single payment is made for a product or service without any recurring charges. It is commonly used for purchases of goods, services, or software licenses that do not require ongoing payments."
+    },
+    {
+        "id": 2,
+        "title": "Quality Products",
+        "icons": "https://i.ibb.co/9NGR5SW/icons8-products.gif",
+        "description": "Connect with reputable sellers vetted through our rigorous verification processes for a reliable shopping experience."
+    },
+    {
+        "id": 3,
+        "title": "100% Secure Payment",
+        "icons": "https://i.ibb.co/ZBBy786/icons8-lock.gif",
+        "description": "Rest assured with our secure payment systems and robust buyer protection policies for worry-free purchases."
+    },
+    {
+        "id": 4,
+        "title": "Fast and Friendly Support",
+        "icons": "https://i.ibb.co/zbFv5zJ/icons8-telephone.gif",
+        "description": "Enjoy the ease and comfort of shopping from anywhere at any time, with simple browsing and secure transactions."
+    },
+    {
+        "id": 5,
+        "title": "Competitive Prices",
+        "icons": "https://i.ibb.co/pRHb92H/icons8-animal-folder-64.png",
+        "description": "Find the best deals and competitive prices on a diverse array of products and services."
+    },
+    {
+        "id": 6,
+        "title": "Wide Selection",
+        "icons": "https://i.ibb.co/tmskV1c/icons8-globe.gif",
+        "description": " Explore an extensive range of products from various sellers, all in one convenient location."
+    }
+   
+]

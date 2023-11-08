@@ -46,7 +46,7 @@ const ReactTab = () => {
                 <Tab><span className='text-2xl font-bold'>Graphics Design</span></Tab>
             </TabList>
             <TabPanel>
-                <div className='grid grid-cols-3 gap-5'>
+                <div className='grid  mx-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
                         webTab.map(tab => <WebDeveloper
                             key={tab._id} tab={tab}
@@ -55,7 +55,7 @@ const ReactTab = () => {
                 </div>
             </TabPanel>
             <TabPanel>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid mx-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5'>
                     {
                         digitalTab.map(tab => <DigitalMarketCard
                             key={tab._id} tab={tab}
@@ -64,7 +64,7 @@ const ReactTab = () => {
                 </div>
             </TabPanel>
             <TabPanel>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid  mx-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5'>
                     {
                         graphicsTab.map(tab => <GraphicsCard
                             key={tab._id} tab={tab}
