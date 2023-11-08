@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import MyBidsCart from "./MyBidsCart";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 
 const MyBids = () => {
@@ -9,9 +10,11 @@ const MyBids = () => {
     const [myBid, setMyBid] = useState([])
     const url = `http://localhost:5000/myBid?userEmail=${user?.email}`
     useEffect(()=>{
-        fetch(url)
-        .then(res=>res.json())
-        .then(data=>setMyBid(data))
+        // fetch(url)
+        // .then(res=>res.json())
+        // .then(data=>setMyBid(data))
+        axios.get(url, {withCredentials:true})
+        .then(res=>setMyBid(res.data))
     },[])
 
     const handleComplete = id => {

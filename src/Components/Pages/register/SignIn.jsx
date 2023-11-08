@@ -5,6 +5,7 @@ import loginAni from './loginAni.json'
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
+import axios from "axios";
 const SignIn = () => {
     const { signInUser, googleLogin } = useContext(AuthContext)
     const location = useLocation();
@@ -15,21 +16,32 @@ const SignIn = () => {
         const form = e.target
         const email = form.email.value
         const password = form.password.value
-        console.log(password, email)
+        // console.log(password, email)
 
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state ? location.state : '/')
-                toast.success('User Log In Successfully!')
-                form.reset('')
+                const user = { email }
+
+
+                // get access token
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                            navigate(location?.state ? location.state : '/')
+                            toast.success('User Log In Successfully!')
+                            form.reset('')
+                        }
+                    })
+
             })
             .catch(error => {
                 console.error(error);
                 toast.error("Oops!! password or email doesn't match. please valid password or email");
             })
 
-            
+
     }
 
     const handleGoogleLogin = () => {
@@ -79,7 +91,7 @@ const SignIn = () => {
 
                         </div>
                         <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
-                            New to here? Please 
+                            New to here? Please
                             <Link
                                 className="font-medium text-red-500 transition-colors hover:text-blue-700"
                                 to='/signUp'
