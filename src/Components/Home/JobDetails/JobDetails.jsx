@@ -10,11 +10,12 @@ const JobDetails = () => {
     const { title, email, deadline, minPrice, maxPrice, description } = job;
     console.log(job)
 
-    // const today = new Date()
-    // const year = today.getFullYear();
-    // const month = today.getMonth()
-    // const day = today.getDay()
-    // const formattedDate = `${year}-${month}-${day}`;
+    const today = new Date()
+    const year = today.getFullYear();
+    const month = today.getMonth()
+    const day = today.getDay()
+    const formattedDate = `${month}-${day}-${year}`;
+    console.log(formattedDate)
 
     const handleBid = e => {
         e.preventDefault()
@@ -69,7 +70,7 @@ const JobDetails = () => {
                                         <span className="label-text text-xl font-medium text-[#63433f]">Deadline</span>
                                     </label>
                                     <label className="input-group">
-                                        <input type="date" name="deadline" className="input input-bordered w-full" />
+                                        <input type="date" defaultValue={formattedDate} name="deadline" className="input input-bordered w-full" />
                                     </label>
                                 </div>
                                 <div className="form-control">
@@ -79,7 +80,8 @@ const JobDetails = () => {
                                     <label className="input-group">
                                         <input type="text"
                                             name="userEmail"
-                                            value={user.email}
+                                            defaultValue={user.email}
+                                           
                                             readOnly
                                             className="input input-bordered w-full" />
                                     </label>
@@ -91,7 +93,7 @@ const JobDetails = () => {
                                     <label className="input-group">
                                         <input type="text"
                                             name="buyerEmail"
-                                            value={email}
+                                            defaultValue={email}
                                             readOnly
                                             className="input input-bordered w-full" />
                                     </label>

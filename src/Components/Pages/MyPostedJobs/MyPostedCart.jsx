@@ -33,8 +33,8 @@ const MyPostedCart = ({ post, postedJob, setPostedJobs }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                form.reset('')
                 toast.success('added job successfully')
+                form.reset('')
             })
 
         console.log(job)
@@ -97,8 +97,8 @@ const MyPostedCart = ({ post, postedJob, setPostedJobs }) => {
 
 
                     {/* updated button and click showing modal */}
-                    <button className="btn btn-outline border-[#4e002d] hover:bg-[#4e002d]" onClick={() => document.getElementById('my_modal_3').showModal()}>Update</button>
-                    <dialog id="my_modal_3" className="modal">
+                    <button className="btn btn-outline border-[#4e002d] hover:bg-[#4e002d]" onClick={() => document.getElementById(_id).showModal()}>Update</button>
+                    <dialog id={_id} className="modal">
                         <div className="modal-box">
                             <form method="dialog">
                                 {/* if there is a button in form, it will close the modal */}
@@ -118,7 +118,7 @@ const MyPostedCart = ({ post, postedJob, setPostedJobs }) => {
                                         <label className="input-group">
                                             <input type="text"
                                                 name="email"
-                                                value={user.email}
+                                                defaultValue={user.email}
                                                 readOnly
                                                 placeholder="Enter Email" className="input input-bordered w-full" />
                                         </label>

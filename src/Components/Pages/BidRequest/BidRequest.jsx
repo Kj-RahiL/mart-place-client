@@ -12,8 +12,8 @@ const BidRequest = () => {
     const [bidRequest, setBidRequest] = useState([])
     const navigate = useNavigate()
 
-      // const bids = useLoaderData()
-    // // console.log(bids)
+    //   const bids = useLoaderData()
+    // console.log(bids)
     // useEffect(() => {
     //     const myBid = bids?.filter(bid => bid.buyerEmail == user.email)
     //     setBidRequest(myBid)
@@ -21,7 +21,6 @@ const BidRequest = () => {
 
     const url = `http://localhost:5000/myBid?buyerEmail=${user?.email}`
     useEffect(()=>{
-
         axios.get(url, {withCredentials:true})
         .then(res=>setBidRequest(res.data))
         .catch(error => {
@@ -88,7 +87,6 @@ const BidRequest = () => {
     // console.log('hewjf', id)
     return (
         <div className=" bg-base-100">
-            <h2>bid rew:{bidRequest.length}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
                 {
                     bidRequest.map(bidReq => <BidReqCart
