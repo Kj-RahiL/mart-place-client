@@ -18,7 +18,7 @@ const AddJob = () => {
         const description = form.description.value
         const job = {email, title, category, deadline, minPrice, maxPrice, description}
 
-        fetch('http://localhost:5000/jobs',{
+        fetch('https://mart-place-server.vercel.app/jobs',{
             method:"POST",
             headers:{
                 'content-type' : 'application/json'

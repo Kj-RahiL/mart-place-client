@@ -26,7 +26,7 @@ const JobDetails = () => {
         const deadline = form.deadline.value
         const myBid = { userEmail, buyerEmail, title, price, deadline , status: 'pending' }
 
-        axios.post('http://localhost:5000/myBid', myBid)
+        axios.post('https://mart-place-server.vercel.app/myBid', myBid)
             .then((res)=>{
                 toast.success('Your bid successfully')
                 console.log(res.data)

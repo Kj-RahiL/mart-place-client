@@ -10,7 +10,7 @@ const MyBids = () => {
     const { user, logOut } = useContext(AuthContext)
     const navigate = useNavigate()
     const [myBid, setMyBid] = useState([])
-    const url = `http://localhost:5000/myBid?userEmail=${user?.email}`
+    const url = `https://mart-place-server.vercel.app/myBid?userEmail=${user?.email}`
     useEffect(() => {
         axios.get(url, { withCredentials: true })
             .then(res => setMyBid(res.data))
@@ -29,7 +29,7 @@ const MyBids = () => {
     }, [])
 
     const handleComplete = id => {
-        fetch(`http://localhost:5000/myBid/${id}`, {
+        fetch(`https://mart-place-server.vercel.app/myBid/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'
@@ -55,11 +55,11 @@ const MyBids = () => {
     return (
         <div className="my-20 mx-5">
 
-            <div className="overflow-x-auto">
-                <table className="table">
+            <div className=" overflow-x-auto">
+                <table className="table ">
 
                     <thead>
-                        <tr className="text-xl text-[#4e002d]">
+                        <tr className="lg:text-xl text-base text-[#4e002d] ">
                             <th>Job title</th>
                             <th>Buyer Email</th>
                             <th>price</th>
@@ -68,7 +68,7 @@ const MyBids = () => {
                             <th>Complete</th>
                         </tr>
                     </thead>
-                    <tbody className="text-lg font-medium text-gray-700">
+                    <tbody className="lg:text-lg text-xs font-medium text-gray-700">
 
                         {
                             myBid.map(bid => <MyBidsCart

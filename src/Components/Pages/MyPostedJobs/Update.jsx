@@ -18,14 +18,14 @@ const Update = () => {
         const description = form.description.value
         const job = { email, title, category, deadline, minPrice, maxPrice, description }
 
-        // axios.patch('http://localhost:5000/jobs', job)
+        // axios.patch('https://mart-place-server.vercel.app/jobs', job)
         // .then(data=>{
         //     console.log(data)
         //     //   form.reset('')
         //     toast.success('added job successfully')
         // })
 
-        fetch(`http://localhost:5000/jobs/${_id}`, {
+        fetch(`https://mart-place-server.vercel.app/jobs/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

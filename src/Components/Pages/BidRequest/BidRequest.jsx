@@ -19,7 +19,7 @@ const BidRequest = () => {
     //     setBidRequest(myBid)
     // }, [])
 
-    const url = `http://localhost:5000/myBid?buyerEmail=${user?.email}`
+    const url = `https://mart-place-server.vercel.app/myBid?buyerEmail=${user?.email}`
     useEffect(()=>{
         axios.get(url, {withCredentials:true})
         .then(res=>setBidRequest(res.data))
@@ -39,7 +39,7 @@ const BidRequest = () => {
 
 
     const handleAccept = id => {
-        fetch(`http://localhost:5000/myBid/${id}`, {
+        fetch(`https://mart-place-server.vercel.app/myBid/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'
@@ -62,7 +62,7 @@ const BidRequest = () => {
 
     }
     const handleReject = id => {
-        fetch(`http://localhost:5000/myBid/${id}`, {
+        fetch(`https://mart-place-server.vercel.app/myBid/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'

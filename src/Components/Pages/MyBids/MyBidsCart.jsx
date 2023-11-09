@@ -30,7 +30,7 @@ const MyBidsCart = ({bid, handleComplete}) => {
                 {
                     status === 'accepted' ? <span onClick={()=>handleComplete(_id)} className="btn">complete</span> : 
                     status === 'complete' ? <span className='btn text-[#ff0061]'>completed</span> :
-                    <span className='btn' disabled="disabled">complete</span> 
+                    <span className='btn btn-xs lg:btn-md' disabled="disabled">complete</span> 
                 }
             </td>
             {/* <th>

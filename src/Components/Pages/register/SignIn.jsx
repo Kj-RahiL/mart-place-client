@@ -5,9 +5,9 @@ import loginAni from './loginAni.json'
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
-import axios from "axios";
+
 const SignIn = () => {
-    const { signInUser, googleLogin } = useContext(AuthContext)
+    const { signInUser, googleLogin, } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate()
 
@@ -21,7 +21,6 @@ const SignIn = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
-                const user = { email }
 
                 navigate(location?.state ? location.state : '/')
                 toast.success('User Log In Successfully!')

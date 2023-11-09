@@ -3,7 +3,7 @@ import { BsChat } from "react-icons/bs";
 const ClientCart = ({ client }) => {
     const {clientName, img, position, reviews}=client
     return (
-        <div className="border-l-2 border-blue-800 card-body shadow-sm bg-slate-50 relative flex w-full max-w-[26rem] flex-col rounded-sm bg-transparent bg-clip-border text-gray-700">
+        <div className="border-l-2 border-blue-800 card-body shadow-sm bg-gray-50 relative flex w-full max-w-[26rem] flex-col rounded-sm bg-transparent bg-clip-border text-gray-700">
             <div className="relative flex items-center gap-4 pt-0 pb-8 mx-0 mt-4 overflow-hidden text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border">
                 <img
                     src={img}

@@ -18,21 +18,21 @@ const ReactTab = () => {
 
     // web development
     useEffect(() => {
-        fetch('http://localhost:5000/jobDetails/Web%20Development')
+        fetch('https://mart-place-server.vercel.app/jobDetails/Web%20Development')
             .then(res => res.json())
             .then(data => setWebTab(data))
     }, [])
 
     // digital marketing
     useEffect(() => {
-        fetch('http://localhost:5000/jobDetails/Digital%20Marketing')
+        fetch('https://mart-place-server.vercel.app/jobDetails/Digital%20Marketing')
             .then(res => res.json())
             .then(data => setDigitalTab(data))
     }, [])
 
     // graphics design
     useEffect(() => {
-        fetch('http://localhost:5000/jobDetails/Graphics%20Design')
+        fetch('https://mart-place-server.vercel.app/jobDetails/Graphics%20Design')
             .then(res => res.json())
             .then(data => setGraphicsTab(data))
     }, [])
@@ -55,7 +55,7 @@ const ReactTab = () => {
                 </div>
             </TabPanel>
             <TabPanel>
-            <div className='grid mx-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5'>
+                <div className='grid mx-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5'>
                     {
                         digitalTab.map(tab => <DigitalMarketCard
                             key={tab._id} tab={tab}
@@ -64,7 +64,7 @@ const ReactTab = () => {
                 </div>
             </TabPanel>
             <TabPanel>
-            <div className='grid  mx-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5'>
+                <div className='grid  mx-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5'>
                     {
                         graphicsTab.map(tab => <GraphicsCard
                             key={tab._id} tab={tab}

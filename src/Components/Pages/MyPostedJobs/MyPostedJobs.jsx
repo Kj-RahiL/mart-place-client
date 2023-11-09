@@ -6,7 +6,7 @@ import MyPostedCart from "./MyPostedCart";
 const MyPostedJobs = () => {
     const { user } = useContext(AuthContext)
     const [postedJob, setPostedJobs] = useState([])
-    const url = `http://localhost:5000/jobs?email=${user?.email}`
+    const url = `https://mart-place-server.vercel.app/jobs?email=${user?.email}`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())

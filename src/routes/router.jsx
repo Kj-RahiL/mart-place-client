@@ -31,12 +31,12 @@ const router = createBrowserRouter([
             {
                 path: '/jobDetails/:id',
                 element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
+                loader: ({ params }) => fetch(`https://mart-place-server.vercel.app/jobs/${params.id}`)
             },
             {
                 path: "/updateJob/:id",
                 element: <PrivateRoute><Update></Update></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
+                loader: ({ params }) => fetch(`https://mart-place-server.vercel.app/jobs/${params.id}`)
             },
             {
                 path: 'MartPlace/myPostedJob',
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             {
                 path: 'MartPlace/bidRequest',
                 element: <PrivateRoute><BidRequest></BidRequest></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/myBid')
+                loader: () => fetch('https://mart-place-server.vercel.app/myBid')
             },
             {
                 path: '/signIn',
