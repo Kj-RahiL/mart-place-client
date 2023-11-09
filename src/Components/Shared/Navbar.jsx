@@ -31,7 +31,7 @@ const Navbar = () => {
 
         >Home</NavLink></li>
 
-        <li><NavLink to="/addJob"
+        <li><NavLink to="MartPlace/addJob"
             style={({ isActive }) => {
                 return {
                     color: isActive? '#ff0061' : '',
@@ -43,7 +43,7 @@ const Navbar = () => {
 
         >Add Job</NavLink></li>
 
-        <li><NavLink to="/myPostedJob"
+        <li><NavLink to="MartPlace/myPostedJob"
             style={({ isActive }) => {
                 return {
                     color: isActive? '#ff0061' : '',
@@ -54,7 +54,7 @@ const Navbar = () => {
 
         >My Posted Jobs</NavLink></li>
 
-        <li><NavLink to="/myBids"
+        <li><NavLink to="MartPlace/myBids"
             style={({ isActive }) => {
                 return {
                     color: isActive? '#ff0061' : '',
@@ -65,7 +65,7 @@ const Navbar = () => {
 
         >My Bids</NavLink></li>
 
-        <li><NavLink to="/bidRequest"
+        <li><NavLink to="MartPlace/bidRequest"
             style={({ isActive }) => {
                 return {
                     color: isActive? '#ff0061' : '',

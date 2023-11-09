@@ -37,7 +37,6 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user)
-
                 toast.success('User Sign Up Successfully!')
                 form.reset('')
                   navigate(location?.state? location.state :'/')
