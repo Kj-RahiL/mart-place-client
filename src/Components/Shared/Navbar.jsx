@@ -2,11 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext } from "react";
 import { toast } from "react-toastify";
-
-
+import { motion } from "framer-motion";
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext)
+
     const handleSignOut = () => {
         logOut()
             .then(() => {
@@ -78,8 +78,10 @@ const Navbar = () => {
        
 
     </>
+
+
     return (
-        <div className="navbar bg-base-100">
+        <motion.div className="navbar bg-base-100" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -118,7 +120,7 @@ const Navbar = () => {
                 }
                
             </div>
-        </div>
+        </motion.div>
     );
 };
 
