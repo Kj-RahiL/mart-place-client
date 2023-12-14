@@ -57,13 +57,13 @@ const SignIn = () => {
                 </div>
                 <div className="card w-full max-w-xl shadow-2xl bg-base-100 flex-1">
                     <div className="text-center mt-5 space-y-2">
-                        <h1 className="text-5xl font-bold">Welcome Back!!</h1>
-                        <p className="text-lg text-gray-500 font-semibold">Log In to Your MartPlace Account!</p>
+                        <h1 className="text-3xl md:text-5xl font-bold">Welcome Back!!</h1>
+                        <p className="md:text-lg text-gray-500 font-semibold">Log In to Your MartPlace Account!</p>
                         <div className="card-body mb-5">
-                            <button onClick={handleGoogleLogin} className="flex w-full  justify-center btn text-xl normal-case font-medium"><FcGoogle></FcGoogle> Continue With Google</button>
+                            <button onClick={handleGoogleLogin} className="flex w-full  justify-center btn md:text-xl normal-case font-medium"><FcGoogle></FcGoogle> Continue With Google</button>
                         </div>
                     </div>
-                    <form onSubmit={handleSignIn} className="card-body md:mx-8">
+                    <form onSubmit={handleSignIn} className="card-body mx-0 md:mx-8">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>

@@ -1,3 +1,5 @@
+import Contact from "../Pages/Contact/Contact";
+import HomeContact from "../Pages/Contact/HomeContact";
 import Banner from "./Banner/Banner";
 import ClientReview from "./ClientsReview/ClientReview";
 import ReactTab from "./Tab/ReactTab";
@@ -15,6 +17,7 @@ const Home = () => {
             </div>
             <WhyChose></WhyChose>
             <ClientReview></ClientReview>
+            <HomeContact></HomeContact>
         </div>
     );
 };

@@ -11,6 +11,8 @@ import JobDetails from "../Components/Home/JobDetails/JobDetails";
 import ErrorElement from "../Components/Pages/ErrorElement/ErrorElement";
 import PrivateRoute from "./PrivateRoute";
 import Update from "../Components/Pages/MyPostedJobs/Update";
+import Blog from "../Components/Pages/Blog/Blog";
+import Contact from "../Components/Pages/Contact/Contact";
 
 
 
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: 'blog',
+                element: <Blog></Blog>
+            },
+            {
+                path: 'contact',
+                element: <Contact></Contact>
             },
             {
                 path: 'MartPlace/addJob',

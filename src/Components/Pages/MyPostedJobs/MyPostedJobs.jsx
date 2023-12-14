@@ -13,7 +13,7 @@ const MyPostedJobs = () => {
             .then(data => setPostedJobs(data))
     }, [])
     return (
-        <div>
+        <div className="my-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto">
                 {
                     postedJob.map(post => <MyPostedCart 

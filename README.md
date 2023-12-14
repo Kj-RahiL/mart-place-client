@@ -1,8 +1,8 @@
 # This Website Name Is -- MartPlace
 
 
-### live link: https://mart-place-1d735.web.app/
-### live link2: https://mart-place-1d735.firebaseapp.com/
+### live link: https://martplace-kj.netlify.app
+### live link2: https://mart-place-1d735.web.app
 
 
 

@@ -1,8 +1,9 @@
-import { Outlet } from "react-router-dom";
+
 import Navbar from "../Components/Shared/Navbar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from "../Components/Shared/Footer";
+import { Outlet } from "react-router-dom";
 
 
 const Root = () => {

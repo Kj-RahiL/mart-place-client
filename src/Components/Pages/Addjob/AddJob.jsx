@@ -36,9 +36,9 @@ const AddJob = () => {
     }
 
     return (
-        <div className="w-3/4 mx-auto  px-20 py-5 bg-[#ff00620f] card">
+        <div className="w-3/4 my-10 mx-auto px-5 md:px-10 lg:px-20 py-5 bg-[#ff00620f] card">
             <div className="space-y-2">
-                <h2 className="text-3xl text-center py-5 font-bold text-[#4e002e]">Add New Product</h2>
+                <h2 className=" text-xl md:text-3xl text-center py-5 font-bold text-[#4e002e]">Add New Product</h2>
             </div>
             <form  onSubmit={handleAddJob}>
                 {/* email and title row */}

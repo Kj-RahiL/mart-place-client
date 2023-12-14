@@ -37,8 +37,7 @@ const JobDetails = () => {
             console.log(myBid)
     }
     return (
-        <motion.div whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }} className="card w-96 mx-auto mt-20 bg-slate-50 shadow-md">
+        <div  className="card p-4 my-10 md:w-96 mx-auto mt-20 bg-slate-50 shadow-md">
             <div className="card-body">
 
                 <h2 className="text-2xl font-bold text-[#4e002d]">{title}</h2>
@@ -110,7 +109,7 @@ const JobDetails = () => {
                     </dialog>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

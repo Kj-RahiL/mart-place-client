@@ -3,15 +3,18 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import avatar from '../../../public/icons8-avatar-48.png'
+import { MdLogin } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
     const handleSignOut = () => {
         logOut()
             .then(() => {
                 console.log('sign out successfully')
-               toast.success('Sign Out successfully!')
+                toast.success('Sign Out successfully!')
             })
             .catch(error => {
                 console.error(error.message)
@@ -22,60 +25,84 @@ const Navbar = () => {
         <li><NavLink to="/"
             style={({ isActive }) => {
                 return {
-                    color: isActive? '#ff0061' : '',
+                    color: isActive ? '#ff0061' : '',
                     fontWeight: isActive ? "bold" : "",
                     background: isActive ? "none" : '',
-                    
+
                 };
             }}
 
         >Home</NavLink></li>
+        {
+            !user ? <>
+                <li className="visible md:hidden"><NavLink to="MartPlace/addJob"
+                    style={({ isActive }) => {
+                        return {
+                            color: isActive ? '#ff0061' : '',
+                            fontWeight: isActive ? "bold" : "",
+                            background: isActive ? "none" : '',
+                        };
+                    }}
 
-        <li><NavLink to="MartPlace/addJob"
+                >Add Jobs</NavLink></li>
+
+            </> : <>
+                <li><NavLink to="MartPlace/myPostedJob"
+                    style={({ isActive }) => {
+                        return {
+                            color: isActive ? '#ff0061' : '',
+                            fontWeight: isActive ? "bold" : "",
+                            background: isActive ? "none" : '',
+                        };
+                    }}
+
+                >My Posted Jobs</NavLink></li>
+
+                <li><NavLink to="MartPlace/myBids"
+                    style={({ isActive }) => {
+                        return {
+                            color: isActive ? '#ff0061' : '',
+                            fontWeight: isActive ? "bold" : "",
+                            background: isActive ? "none" : '',
+                        };
+                    }}
+
+                >My Bids</NavLink></li>
+
+                <li><NavLink to="MartPlace/bidRequest"
+                    style={({ isActive }) => {
+                        return {
+                            color: isActive ? '#ff0061' : '',
+                            fontWeight: isActive ? "bold" : "",
+                            background: isActive ? "none" : '',
+                        };
+                    }}
+
+                >Bid Request</NavLink></li>
+            </>
+        }
+        <li><NavLink to="/blog"
             style={({ isActive }) => {
                 return {
-                    color: isActive? '#ff0061' : '',
+                    color: isActive ? '#ff0061' : '',
                     fontWeight: isActive ? "bold" : "",
                     background: isActive ? "none" : '',
-                    
+
                 };
             }}
 
-        >Add Job</NavLink></li>
-
-        <li><NavLink to="MartPlace/myPostedJob"
+        >Blog</NavLink></li>
+        <li><NavLink to="/contact"
             style={({ isActive }) => {
                 return {
-                    color: isActive? '#ff0061' : '',
+                    color: isActive ? '#ff0061' : '',
                     fontWeight: isActive ? "bold" : "",
                     background: isActive ? "none" : '',
+
                 };
             }}
 
-        >My Posted Jobs</NavLink></li>
-
-        <li><NavLink to="MartPlace/myBids"
-            style={({ isActive }) => {
-                return {
-                    color: isActive? '#ff0061' : '',
-                    fontWeight: isActive ? "bold" : "",
-                    background: isActive ? "none" : '',
-                };
-            }}
-
-        >My Bids</NavLink></li>
-
-        <li><NavLink to="MartPlace/bidRequest"
-            style={({ isActive }) => {
-                return {
-                    color: isActive? '#ff0061' : '',
-                    fontWeight: isActive ? "bold" : "",
-                    background: isActive ? "none" : '',
-                };
-            }}
-
-        >Bid Request</NavLink></li>
-       
+        >Contact</NavLink></li>
 
     </>
 
@@ -91,7 +118,7 @@ const Navbar = () => {
                         {link}
                     </ul>
                 </div>
-               <Link to='/' className=" text-3xl font-bold"><h2><span className="text-[#4e002d]">Mart</span><span className="text-[#ff0061]">Place</span></h2></Link>
+                <Link to='/' className=" text-3xl font-bold"><h2><span className="text-[#4e002d]">Mart</span><span className="text-[#ff0061]">Place</span></h2></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -99,26 +126,30 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className=" ">
-                    
-                        {
-                            user ? <div className="flex btn btn-ghost space-y-1" >
-                                <img className="w-8 rounded-full" src={user?.photoURL} alt="" />
-                                <h2 className="text-sm font-light">{user?.displayName} </h2>
-                                
-                            </div>
-                            : ''
-                      
-                        }
-                    
-                </div>
+
                 {
                     user ?
-                        <button onClick={handleSignOut} className="btn btn-ghost text-[#4e002d] normal-case font-semibold">SignOut</button>
-                        :
-                        <Link to='/signIn' className="btn btn-ghost text-[#4e002d] normal-case font-semibold">Login</Link>
+                        <div className="dropdown dropdown-end flex gap-5">
+                            <li className=" hidden sm:block">
+                                <Link to="MartPlace/addJob"
+                                    className="btn btn-ghost normal-case bg-[#ff0061] text-white hover:bg-[#4e002d]"
+                                ><FaPlus></FaPlus>Add Job</Link>
+                            </li>
+                            <label tabIndex={0} className="btn  bg-transparent flex">
+                                <h2 className="font-light mr-2 rounded">{user?.displayName} </h2>
+                                <img className="w-8 rounded-full " src={user?.photoURL ? user?.photoURL : avatar} alt="" />
+                            </label>
+                            <ul tabIndex={0} className="menu dropdown-content z-[1] p-4 shadow border-2 bg-neutral-500 text-white bg-blend-overlay rounded-box mt-14">
+                                <li><button onClick={handleSignOut} className="btn btn-ghost  hover:bg-[#F4AF00] normal-case font-semibold">SignOut</button></li>
+                            </ul>
+                        </div> :
+                        <div className=" flex justify-center gap-5">
+                            <Link to="MartPlace/addJob"
+                                className="btn btn-ghost normal-case bg-[#ff0061] text-white hover:bg-[#4e002d] "
+                            ><FaPlus></FaPlus>Add Job</Link>
+                            <Link to='/signIn' className="btn btn-ghost text-[#4e002d] normal-case font-semibold"><MdLogin></MdLogin> Login</Link>
+                        </div>
                 }
-               
             </div>
         </motion.div>
     );
