@@ -29,7 +29,7 @@
 
 - **Others:**
    ![Progress Bar](https://img.shields.io/badge/Progress_Bar-%23000000.svg?style=flat-square)
->>>>>>> f988926c2ef125896cdfd1f3a3e64665eea6bf00
+
 
 
 
